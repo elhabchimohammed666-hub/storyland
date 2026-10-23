@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Guide d'Utilisation et de Gestion - StoryLand</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 18mm 20mm 18mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+    
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.5;
+      font-size: 10.5pt;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Cover Page */
+    .cover {
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .cover-badge {
+      background: #e0e7ff;
+      color: #4338ca;
+      font-weight: 800;
+      font-size: 11pt;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 25px;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cover-title {
+      font-size: 34pt;
+      font-weight: 900;
+      color: #1e1b4b;
+      margin: 0 0 15px 0;
+      line-height: 1.15;
+    }
+
+    .cover-subtitle {
+      font-size: 15pt;
+      color: #475569;
+      font-weight: 600;
+      max-width: 600px;
+      margin: 0 auto 35px auto;
+      line-height: 1.4;
+    }
+
+    .cover-divider {
+      width: 80px;
+      height: 5px;
+      background: linear-gradient(to right, #4f46e5, #06b6d4);
+      border-radius: 9999px;
+      margin-bottom: 35px;
+    }
+
+    .cover-meta {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 20px 30px;
+      text-align: left;
+      font-size: 10pt;
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .cover-meta table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cover-meta td {
+      padding: 5px 0;
+    }
+
+    .cover-meta td.label {
+      font-weight: 700;
+      color: #64748b;
+      width: 40%;
+    }
+
+    .cover-meta td.val {
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Document Structure */
+    h1 {
+      font-size: 18pt;
+      font-weight: 900;
+      color: #1e1b4b;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      page-break-after: avoid;
+    }
+
+    h2 {
+      font-size: 13pt;
+      font-weight: 800;
+      color: #312e81;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #4338ca;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-top: 0;
+      margin-bottom: 12px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 9.5pt;
+      page-break-inside: avoid;
+    }
+
+    table.data-table th {
+      background-color: #312e81;
+      color: #ffffff;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 12px;
+      border: 1px solid #312e81;
+    }
+
+    table.data-table td {
+      padding: 7px 12px;
+      border: 1px solid #cbd5e1;
+      vertical-align: top;
+    }
+
+    table.data-table tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* Boxes & Alerts */
+    .callout {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 9.5pt;
+      page-break-inside: avoid;
+    }
+
+    .callout-info {
+      background-color: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      color: #1e3a8a;
+    }
+
+    .callout-tip {
+      background-color: #ecfdf5;
+      border-left: 4px solid #10b981;
+      color: #064e3b;
+    }
+
+    .callout-warning {
+      background-color: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #78350f;
+    }
+
+    .callout-title {
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 10pt;
+    }
+
+    /* Code blocks */
+    code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9pt;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 5px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 8.5pt;
+      line-height: 1.45;
+      overflow-x: hidden;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      border: none;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 8pt;
+      text-transform: uppercase;
+    }
+
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+    .badge-purple { background: #f3e8ff; color: #6b21a8; }
+
+    .step-number {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      background-color: #4f46e5;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 22px;
+      font-size: 9pt;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+
+    .page-break {
+      page-break-after: always;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= COVER PAGE ================= -->
+  <div class="cover">
+    <div class="cover-badge">Guide Officiel d'Utilisation & d'Administration</div>
+    <h1 class="cover-title">StoryLand</h1>
+    <div class="cover-subtitle">Plateforme Éducative de Lecture et de Création d'Histoires par Intelligence Artificielle (MERN Stack)</div>
+    <div class="cover-divider"></div>
+
+    <div class="cover-meta">
+      <table>
+        <tr>
+          <td class="label">Projet :</td>
+          <td class="val">StoryLand — MERN Stack Edition</td>
+        </tr>
+        <tr>
+          <td class="label">Stack :</td>
+          <td class="val">MongoDB, Express.js, React.js, Node.js</td>
+        </tr>
+        <tr>
+          <td class="label">Moteur IA :</td>
+          <td class="val">Google Gemini AI + Générateur Autonome</td>
+        </tr>
+        <tr>
+          <td class="label">Version :</td>
+          <td class="val">1.0.0 (Conforme Cahier des Charges)</td>
+        </tr>
+        <tr>
+          <td class="label">Date :</td>
+          <td class="val">Octobre 2026</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ================= SECTION 1 ================= -->
+  <h1>1. Présentation Générale de StoryLand</h1>
+  <p>
+    <strong>StoryLand</strong> est une application web conçue pour développer le plaisir de la lecture chez les enfants de l'école primaire à travers des récits originaux, captivants et adaptés à leur niveau scolaire.
+  </p>
+  <p>
+    La plateforme comble le fossé entre la création de contenu pédagogique personnalisé et le suivi de la lecture en classe. Grâce à l'intelligence artificielle, les enseignants créent des histoires sur mesure selon les intérêts des élèves et leur âge, tout en assurant un contrôle pédagogique total avant publication.
+  </p>
+
+  <h2>1.1 Objectifs Clés</h2>
+  <ul>
+    <li><strong>Encourager la lecture quotidienne :</strong> Proposer aux enfants un environnement de lecture interactif, coloré et motivant.</li>
+    <li><strong>Faciliter la création pédagogique :</strong> Permettre aux enseignants de générer des histoires complètes en <em>Français</em>, <em>Arabe</em> ou <em>Anglais</em> en quelques secondes.</li>
+    <li><strong>Organisation des classes :</strong> Gérer des groupes d'élèves avec des accès simples et sécurisés.</li>
+    <li><strong>Suivi fin et objectif :</strong> Mesurer page par page la progression réelle de chaque élève, avec reprise automatique de lecture.</li>
+    <li><strong>IA Responsable et Sécurité Enfant :</strong> Filtre de modération automatique et approbation obligatoire par l'enseignant avant toute diffusion.</li>
+  </ul>
+
+  <h2>1.2 Les Deux Rôles Utilisateurs</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Rôle</th>
+        <th style="width: 35%;">Permissions & Fonctionnalités</th>
+        <th style="width: 40%;">Restrictions de Sécurité</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>👩‍🏫 Enseignant (Teacher)</strong></td>
+        <td>
+          • Inscription et gestion de son compte.<br>
+          • Création et gestion de ses classes.<br>
+          • Inscription des élèves et gestion de leurs mots de passe.<br>
+          • Génération d'histoires par IA (5, 8, 10, 13, 15 pages).<br>
+          • Relecture, édition et publication.<br>
+          • Assignation d'histoires aux classes.<br>
+          • Tableau de bord analytique des lectures.
+        </td>
+        <td>
+          • N'accède qu'à ses propres classes, élèves et histoires.<br>
+          • Ne peut pas supprimer ou réordonner des pages dès qu'un élève a démarré la lecture.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>🎒 Élève (Student)</strong></td>
+        <td>
+          • Connexion avec le compte créé par son professeur.<br>
+          • Consultation des histoires assignées à sa classe.<br>
+          • Liseuse interactive page par page.<br>
+          • Validation explicite de chaque page lue.<br>
+          • Reprise automatique là où il s'était arrêté.<br>
+          • Écoute audio vocale (synthèse vocale intégrée).<br>
+          • Relecture illimitée des livres terminés.
+        </td>
+        <td>
+          • Ne peut pas créer ou modifier des histoires.<br>
+          • Ne peut pas voir les données privées ou la progression des autres camarades.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ================= SECTION 2 ================= -->
+  <div class="page-break"></div>
+  <h1>2. Démarrage Rapide & Démonstration Immédiate</h1>
+
+  <h2>2.1 Prérequis Système</h2>
+  <ul>
+    <li><strong>Node.js</strong> : Version 18 ou supérieure (recommandé Node v20 ou v24).</li>
+    <li><strong>MongoDB</strong> : Instance locale en cours d'exécution sur le port <code>27017</code>, ou cluster MongoDB Atlas.</li>
+    <li><strong>Navigateur Web</strong> : Chrome, Edge, Firefox ou Safari moderne.</li>
+  </ul>
+
+  <h2>2.2 Lancement de l'Application en 1 Ligne</h2>
+  <p>Depuis le dossier racine du projet <code>storyland2/</code>, exécutez simplement :</p>
+  <pre><code>npm start</code></pre>
+  <p>
+    Le serveur unifié démarre sur <strong><code>http://localhost:5050</code></strong>. Il sert simultanément l'API REST Express et l'interface utilisateur React compilée.
+  </p>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">💡 Accès Démo Immédiat en 1 Clic</div>
+    Sur la page d'accueil (<code>http://localhost:5050</code>), des boutons colorés permettent de vous connecter instantanément en tant qu'enseignant ou l'un des élèves de démonstration sans avoir à taper vos identifiants.
+  </div>
+
+  <h2>2.3 Comptes de Démonstration (Scénario Officiel du PDF)</h2>
+  <p>
+    La base de données est pré-peuplée avec le scénario exact des pages 9 et 10 du cahier des charges :
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Utilisateur</th>
+        <th>Rôle</th>
+        <th>Identifiant / Email</th>
+        <th>Mot de passe</th>
+        <th>Données associées</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Mme. Clara Dupont</strong></td>
+        <td>Enseignant</td>
+        <td><code>teacher@storyland.com</code></td>
+        <td><code>Teacher123!</code></td>
+        <td>Classe : <em>Young Readers</em> (8 ans)</td>
+      </tr>
+      <tr>
+        <td><strong>Sara Miller</strong></td>
+        <td>Élève</td>
+        <td><code>sara</code></td>
+        <td><code>student123</code></td>
+        <td><span class="badge badge-green">Terminé (100%)</span> — 10 / 10 pages lues</td>
+      </tr>
+      <tr>
+        <td><strong>Adam Evans</strong></td>
+        <td>Élève</td>
+        <td><code>adam</code></td>
+        <td><code>student123</code></td>
+        <td><span class="badge badge-amber">En cours (50%)</span> — 5 / 10 pages lues (Page 6 ouverte)</td>
+      </tr>
+      <tr>
+        <td><strong>Lina Chen</strong></td>
+        <td>Élève</td>
+        <td><code>lina</code></td>
+        <td><code>student123</code></td>
+        <td><span class="badge badge-amber">En cours (20%)</span> — 2 / 10 pages lues (Page 3 ouverte)</td>
+      </tr>
+      <tr>
+        <td><strong>Youssef Al-Mansoor</strong></td>
+        <td>Élève</td>
+        <td><code>youssef</code></td>
+        <td><code>student123</code></td>
+        <td><span class="badge badge-blue">Non commencé (0%)</span> — 0 / 10 pages lues</td>
+      </tr>
+      <tr>
+        <td><strong>Noor Zahra</strong></td>
+        <td>Élève</td>
+        <td><code>noor</code></td>
+        <td><code>student123</code></td>
+        <td><span class="badge badge-blue">Non commencé (0%)</span> — 0 / 10 pages lues</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ================= SECTION 3 ================= -->
+  <div class="page-break"></div>
+  <h1>3. Guide de l'Enseignant (Teacher Portal)</h1>
+
+  <h2>3.1 Tableau de Bord Principal (Overview)</h2>
+  <p>
+    Dès sa connexion, l'enseignant accède à un résumé visuel de son espace :
+  </p>
+  <ul>
+    <li><strong>Statistiques globales :</strong> Nombre de classes actives, effectif total d'élèves, histoires publiées et brouillons en attente de relecture.</li>
+    <li><strong>Raccourcis d'action :</strong> Boutons directs vers la création de classe et le générateur d'histoire par IA.</li>
+    <li><strong>Aperçu des classes :</strong> Fiches récapitulatives avec accès rapide au suivi de lecture.</li>
+  </ul>
+
+  <h2>3.2 Gestion des Classes et des Comptes Élèves</h2>
+  <p>
+    Accessible via l'onglet <strong>"Classes & Students"</strong> dans la barre supérieure :
+  </p>
+  <ol>
+    <li><strong>Créer une classe :</strong> Cliquez sur <em>"Create New Class"</em>, saisissez le nom (ex: <em>CE1 - Les Aventuriers</em>), la tranche d'âge cible (ex: 7 ans) et une description optionnelle.</li>
+    <li><strong>Ajouter un élève :</strong> Sélectionnez la classe à gauche, puis cliquez sur <em>"Add Student"</em> :
+      <ul>
+        <li>Renseignez le nom complet (ex: <em>Lucas Martin</em>).</li>
+        <li>L'identifiant est suggéré automatiquement en minuscules (ex: <code>lucas</code>).</li>
+        <li>Définissez son mot de passe initial (par défaut : <code>student123</code>).</li>
+        <li>Choisissez sa mascotte animalière (Renard, Ours, Lapin, Lion, Hibou ou Chat).</li>
+      </ul>
+    </li>
+    <li><strong>Exporter la liste des identifiants :</strong> Cliquez sur le bouton <em>"Copy Logins"</em> pour copier d'un seul clic l'ensemble des identifiants de la classe dans votre presse-papier afin de les imprimer ou les transmettre aux parents.</li>
+    <li><strong>Suppression sécurisée :</strong> Supprimer un élève ou une classe nettoie automatiquement les dossiers de progression associés afin d'éviter tout enregistrement orphelin.</li>
+  </ol>
+
+  <h2>3.3 Générateur d'Histoires par IA (AI Generator)</h2>
+  <p>
+    L'outil permet de générer un récit complet, structuré et calibré pour l'âge choisi :
+  </p>
+  <ul>
+    <li><strong>Thème ou Sujet :</strong> Saisissez une idée libre (ex: <em>"L'écologie et le nettoyage de la plage"</em>) ou cliquez sur un thème suggéré (Amitié, Forêt enchantée, Robot curieux, etc.).</li>
+    <li><strong>Âge cible :</strong> De 5 à 14 ans. Le modèle adapte automatiquement la complexité lexicale et la longueur des phrases.</li>
+    <li><strong>Langue :</strong> Choisissez parmi <strong>Anglais (🇬🇧)</strong>, <strong>Français (🇫🇷)</strong> ou <strong>Arabe (🇸🇦)</strong>.</li>
+    <li><strong>Nombre de pages exact :</strong> Choisissez strictement parmi <strong>5, 8, 10, 13 ou 15 pages</strong> (conforme au cahier des charges).</li>
+  </ul>
+
+  <div class="callout callout-info">
+    <div class="callout-title">🛡️ Sécurité Enfant & Modération Automatique</div>
+    Chaque proposition de thème et chaque page générée par l'IA passe par un filtre de sécurité intégré qui rejette tout contenu violent, offensant ou inadapté. L'histoire est systématiquement enregistrée avec le statut <strong>Draft (Brouillon)</strong>. Elle n'est jamais visible des élèves sans validation préalable de l'enseignant.
+  </div>
+
+  <h2>3.4 Revue, Édition et Publication d'une Histoire</h2>
+  <p>
+    Après génération ou depuis la bibliothèque, l'enseignant accède à l'écran de revue détaillée :
+  </p>
+  <ol>
+    <li><strong>Modification du titre :</strong> Adaptez le titre du livre selon vos souhaits.</li>
+    <li><strong>Édition page par page :</strong> Chaque page dispose d'une zone de texte éditable pour retoucher le vocabulaire ou la ponctuation. Les histoires en arabe s'affichent automatiquement en mode droite-à-gauche (RTL) avec une calligraphie adaptée.</li>
+    <li><strong>Bouton "Approve & Publish Story" :</strong> Valide le statut de l'histoire en <code>Published</code>. Dès cet instant, le livre peut être assigné aux classes.</li>
+    <li><strong>Bouton "Translate with AI" :</strong> Permet de créer en 1 clic une version adaptée dans une autre langue (par exemple, traduire une histoire anglaise en français ou en arabe), sauvegardée en nouveau brouillon indépendant.</li>
+  </ol>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">🔒 Verrouillage Structurel en Cours de Lecture</div>
+    Conformément à la Section 3.1 D du PDF, dès qu'au moins un élève a commencé à lire une histoire assignée, le backend verrouille automatiquement la modification du nombre de pages pour éviter de fausser les données de progression enregistrées.
+  </div>
+
+  <!-- ================= SECTION 4 ================= -->
+  <div class="page-break"></div>
+  <h2>3.5 Bibliothèque d'Histoires et Assignation</h2>
+  <p>
+    L'onglet <strong>"Story Library"</strong> rassemble tous les livres de l'enseignant :
+  </p>
+  <ul>
+    <li><strong>Filtres multi-critères :</strong> Recherchez par mot-clé, filtrez par langue (🇬🇧, 🇫🇷, 🇸🇦), par statut (Brouillon, Publié) et par catégorie (Aventure, Amitié, Animaux, Nature, etc.).</li>
+    <li><strong>Assigner à une classe :</strong> Cliquez sur <em>"Assign"</em> sur la carte d'une histoire publiée. Une fenêtre modale vous permet de cocher une ou plusieurs de vos classes. Les élèves de ces classes verront immédiatement le livre apparaître dans leur espace.</li>
+    <li>Une histoire est créée une seule fois et partagée entre plusieurs classes sans copie inutile en base de données.</li>
+  </ul>
+
+  <h2>3.6 Tableau de Bord de Suivi de Lecture (Reading Progress)</h2>
+  <p>
+    Ce tableau de bord fournit le suivi réel et précis des lectures de vos classes :
+  </p>
+  <ol>
+    <li>Sélectionnez la <strong>Classe</strong> dans le premier menu déroulant.</li>
+    <li>Sélectionnez l'<strong>Histoire Assignée</strong> dans le second menu déroulant.</li>
+    <li>Consultez instantanément les indicateurs consolidés :
+      <ul>
+        <li><strong>Effectif total :</strong> Nombre d'élèves de la classe.</li>
+        <li><strong>Terminé :</strong> Nombre d'élèves ayant validé 100% des pages.</li>
+        <li><strong>En cours :</strong> Nombre d'élèves ayant débuté la lecture.</li>
+        <li><strong>Non commencé :</strong> Nombre d'élèves n'ayant pas encore ouvert le livre.</li>
+        <li><strong>Moyenne de la classe :</strong> Pourcentage global de complétion.</li>
+      </ul>
+    </li>
+    <li>Consultez le <strong>Tableau nominatif</strong> (identique à l'exemple page 6 et 10 du PDF) :
+      <ul>
+        <li>Nom et pseudo de chaque élève.</li>
+        <li>Fraction exacte de lecture (ex: <code>10/10 pages</code>, <code>5/10 pages</code>, <code>0/10 pages</code>).</li>
+        <li>Barre de progression visuelle colorée.</li>
+        <li>Badge d'état : <span class="badge badge-green">Completed</span>, <span class="badge badge-amber">In Progress</span>, ou <span class="badge badge-blue">Not Started</span>.</li>
+        <li>Dernière page consultée (ex: <em>Page 6</em>).</li>
+      </ul>
+    </li>
+  </ol>
+
+  <!-- ================= SECTION 5 ================= -->
+  <div class="page-break"></div>
+  <h1>4. Guide de l'Élève (Student Space)</h1>
+
+  <h2>4.1 Connexion Amusante</h2>
+  <p>
+    L'écran de connexion élève (<code>/login/student</code>) a été pensé pour les jeunes enfants :
+  </p>
+  <ul>
+    <li>Champs de saisie larges avec icônes amicales.</li>
+    <li>Possibilité de cliquer directement sur son avatar animalier pour pré-remplir son pseudo.</li>
+    <li>Bouton géant et engageant : <strong>"C'est parti pour la lecture ! 🚀"</strong>.</li>
+  </ul>
+
+  <h2>4.2 La Bibliothèque de l'Élève</h2>
+  <p>
+    Dans son espace personnel (<code>/student</code>), l'élève découvre :
+  </p>
+  <ul>
+    <li>Un message d'accueil personnalisé avec sa mascotte et le nom de sa classe.</li>
+    <li>Un compteur de trophées 🏆 indiquant le nombre total d'histoires complétées.</li>
+    <li>Les fiches de toutes les histoires assignées par son enseignant, affichant clairement :
+      <ul>
+        <li>Le titre et la catégorie.</li>
+        <li>Le drapeau de la langue (🇬🇧, 🇫🇷, 🇸🇦) et l'âge suggéré.</li>
+        <li>La barre de progression individuelle avec le pourcentage exact.</li>
+        <li>Le bouton d'action contextuel : <em>"Commencer la lecture 📖"</em>, <em>"Reprendre (Page X) 🚀"</em> ou <em>"Relire 🌟"</em>.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>4.3 L'Expérience de Lecture Interactive (Liseuse)</h2>
+  <p>
+    Lorsqu'un livre est ouvert (<code>/student/read/:storyId</code>) :
+  </p>
+  <ul>
+    <li><strong>Reprise automatique (Automatic Resume) :</strong> L'application rouvre directement la dernière page consultée par l'élève lors de sa session précédente.</li>
+    <li><strong>Affichage page par page :</strong> Une seule page à la fois pour favoriser la concentration, avec indicateur clair (ex: <em>Page 3 sur 10</em>) et description de la scène illustrée.</li>
+    <li><strong>Support complet de l'Arabe (RTL) :</strong> Pour les livres en arabe, le texte s'oriente naturellement de droite à gauche, la calligraphie est adaptée, et le sens des boutons de navigation est inversé.</li>
+    <li><strong>Validation explicite de page :</strong> Conformément à la règle d'or du projet, <em>ouvrir une page ne la valide pas automatiquement</em>. L'élève doit cliquer sur le bouton <strong>"Marquer la page comme lue ⭐"</strong> pour attester de sa lecture.</li>
+    <li><strong>Anti-triche & Relecture :</strong> Revenir sur une page déjà validée ne réinitialise jamais le score et ne le compte jamais en double.</li>
+    <li><strong>Synthèse Vocale (Audio Read-Aloud) :</strong> Un bouton avec l'icône de haut-parleur permet d'écouter la lecture de la page à voix haute avec un débit adapté aux enfants.</li>
+    <li><strong>Taille de police ajustable :</strong> Boutons <code>A</code> et <code>A+</code> pour agrandir le texte pour un meilleur confort visuel.</li>
+    <li><strong>Célébration festive :</strong> Dès que la dernière page est validée, une explosion de confettis s'affiche avec un message de félicitations et l'attribution du badge de champion de lecture.</li>
+    <li><strong>Mode Impression / PDF :</strong> Un bouton imprimante permet d'imprimer l'histoire complète ou de l'enregistrer en PDF pour une lecture hors ligne à la maison.</li>
+  </ul>
+
+  <!-- ================= SECTION 6 ================= -->
+  <div class="page-break"></div>
+  <h1>5. Administration & Maintenance Technique</h1>
+
+  <h2>5.1 Arborescence du Code Source</h2>
+  <pre><code>storyland2/
+├── client/                     # Application Frontend React
+│   ├── src/
+│   │   ├── components/         # Navbar, StoryCard, ProgressBar, AvatarIcon, Icons...
+│   │   ├── context/            # AuthContext (Gestion Session JWT & Rôles)
+│   │   ├── pages/              # Pages complètes (Dashboards, Reader, Review...)
+│   │   ├── services/           # api.js (Client Axios configuré avec intercepteurs)
+│   │   ├── App.jsx             # Configuration des routes protégées
+│   │   └── main.jsx
+│   ├── dist/                   # Fichiers compilés de production
+│   ├── vite.config.js          # Configuration Vite & Proxy API
+│   └── package.json
+├── server/                     # Application Backend Node.js
+│   ├── src/
+│   │   ├── config/             # db.js (Connexion Mongoose)
+│   │   ├── controllers/        # auth, class, story, progress controllers
+│   │   ├── middleware/         # auth.js (JWT protect & requireRole)
+│   │   ├── models/             # Schémas User, Class, Story, Assignment, Progress
+│   │   ├── routes/             # Routes Express modulaires
+│   │   ├── seed/               # seed.js (Scénario de démonstration officiel)
+│   │   ├── services/           # aiStoryService.js & contentSafetyService.js
+│   │   └── server.js           # Serveur Express unifié
+│   ├── .env                    # Fichier de variables d'environnement
+│   └── package.json
+├── StoryLand_MERN.pdf          # Cahier des charges PDF d'origine
+├── README.md                   # Documentation GitHub détaillée
+└── package.json                # Scripts npm globaux</code></pre>
+
+  <h2>5.2 Commandes Principales</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Commande</th>
+        <th style="width: 70%;">Rôle & Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>npm start</code></td>
+        <td>Démarre le serveur full-stack en mode production unifié sur le port <strong>5050</strong> (sert l'API et l'application React).</td>
+      </tr>
+      <tr>
+        <td><code>npm run seed</code></td>
+        <td>Réinitialise la base MongoDB et injecte le scénario complet avec l'enseignant, la classe <em>Young Readers</em> et les 5 élèves.</td>
+      </tr>
+      <tr>
+        <td><code>npm run build</code></td>
+        <td>Recompile les assets statiques du client React dans le dossier <code>client/dist/</code>.</td>
+      </tr>
+      <tr>
+        <td><code>cd client && npm run dev</code></td>
+        <td>Lance le serveur de développement Vite avec Hot Module Replacement sur le port <code>5173</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5.3 Configuration de l'Intelligence Artificielle</h2>
+  <p>
+    Dans le fichier <code>server/.env</code> :
+  </p>
+  <pre><code>GEMINI_API_KEY=AIzaSy...votre_cle_ici</code></pre>
+  <ul>
+    <li>Si vous disposez d'une clé API Google Gemini (gratuite sur <a href="https://aistudio.google.com/">Google AI Studio</a>), renseignez-la pour utiliser le modèle <code>gemini-1.5-flash</code>.</li>
+    <li><strong>Moteur de secours infaillible :</strong> Si aucune clé n'est fournie ou en cas de quota dépassé, StoryLand bascule instantanément et de façon transparente sur son générateur de récits multilingue intelligent. Aucune erreur n'est affichée à l'utilisateur, ce qui garantit 100% de disponibilité lors des soutenances et démonstrations.</li>
+  </ul>
+
+  <h2>5.4 Guide de Déploiement en Ligne (Cloud)</h2>
+  <p>
+    Pour publier StoryLand en ligne gratuitement :
+  </p>
+  <ol>
+    <li><strong>Base de données (MongoDB Atlas) :</strong>
+      <ul>
+        <li>Créez un cluster gratuit M0 sur <a href="https://www.mongodb.com/atlas">MongoDB Atlas</a>.</li>
+        <li>Récupérez l'URI de connexion sous la forme : <code>mongodb+srv://user:pass@cluster.mongodb.net/storyland</code>.</li>
+      </ul>
+    </li>
+    <li><strong>Hébergement Full-Stack (Render ou Railway) :</strong>
+      <ul>
+        <li>Connectez votre dépôt Git à <a href="https://render.com/">Render</a> ou <a href="https://railway.app/">Railway</a>.</li>
+        <li>Type de service : <em>Web Service</em>.</li>
+        <li>Commande de Build : <code>npm run build</code>.</li>
+        <li>Commande de Démarrage : <code>npm start</code>.</li>
+        <li>Renseignez les variables d'environnement : <code>MONGODB_URI</code>, <code>JWT_SECRET</code>, <code>GEMINI_API_KEY</code>, <code>NODE_ENV=production</code>.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <!-- ================= CONCLUSION ================= -->
+  <div class="page-break"></div>
+  <h1>6. Foire Aux Questions & Dépannage (FAQ)</h1>
+
+  <h2>Q1 : L'ouverture d'une page par un élève la valide-t-elle comme lue ?</h2>
+  <p>
+    <strong>Non.</strong> Conformément à l'exigence formelle du document PDF, l'ouverture d'une page met uniquement à jour le champ <code>lastOpenedPage</code> pour la reprise automatique. Seul un clic explicite sur <em>"Marquer la page comme lue ⭐"</em> ajoute cette page à la liste <code>completedPages</code> et fait progresser le pourcentage.
+  </p>
+
+  <h2>Q2 : Un élève peut-il tricher en relisant plusieurs fois la même page ?</h2>
+  <p>
+    <strong>Non.</strong> Le système vérifie l'unicité des numéros de pages dans le tableau <code>completedPages</code>. Cliquer à nouveau sur une page déjà lue ne recalcule pas deux fois la même progression et ne réinitialise rien.
+  </p>
+
+  <h2>Q3 : Pourquoi ne puis-je plus supprimer de pages sur une histoire publiée ?</h2>
+  <p>
+    Dès qu'un élève a commencé sa lecture (statut <em>In Progress</em> ou <em>Completed</em>), le backend verrouille toute modification de la structure pour préserver l'intégrité mathématique des dossiers d'évaluation déjà enregistrés.
+  </p>
+
+  <h2>Q4 : Comment réinitialiser les données de démo si un élève a tout lu ?</h2>
+  <p>
+    Exécutez simplement <code>npm run seed</code> dans votre terminal. En 2 secondes, la base sera réinitialisée avec les états initiaux du cahier des charges (Sara à 100%, Adam à 50%, Lina à 20%, etc.).
+  </p>
+
+  <div style="margin-top: 50px; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 25px; color: #64748b; font-size: 9pt;">
+    <strong>StoryLand</strong> — Guide d'Utilisation et d'Administration • Octobre 2026<br>
+    Développé avec le MERN Stack pour une éducation bienveillante et responsable.
+  </div>
+
+</body>
+</html>
