@@ -59,15 +59,7 @@ storyland2/
 
 ---
 
-## 👥 Comptes Démonstration Pré-configurés (Demo Accounts)
 
-La base de données est initialisée avec le scénario exact spécifié dans le document PDF (Pages 9 & 10) :
-
-### 👩‍🏫 Compte Enseignant (Teacher)
-- **Email** : `teacher@storyland.com`
-- **Mot de passe** : `Teacher123!`
-- **Nom** : Mme. Clara Dupont
-- **Classe gérée** : *Young Readers* (8 ans)
 
 ### 🎒 Comptes Élèves (Students) — Classe *Young Readers*
 *Mot de passe commun pour tous les élèves de démo* : `student123`
@@ -90,15 +82,7 @@ La base de données est initialisée avec le scénario exact spécifié dans le 
 - [Node.js](https://nodejs.org/) v18+ (testé et validé sur Node v24)
 - [MongoDB](https://www.mongodb.com/) en local (port 27017) ou une URL MongoDB Atlas
 
-### 2. Configuration (`.env`)
-Le fichier `.env` à la racine ou dans `server/.env` contient :
-```env
-PORT=5050
-MONGODB_URI=mongodb://127.0.0.1:27017/storyland
-JWT_SECRET=storyland_super_secure_jwt_secret_key_2026
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY_HERE   # Optionnel : moteur narratif de secours inclus
-NODE_ENV=development
-```
+
 
 > **Note sur l'IA** : Si `GEMINI_API_KEY` n'est pas renseignée ou hors quota, StoryLand intègre un **moteur narratif intelligent multilingue autonome** qui produit instantanément des récits structurés et captivants sans bloquer l'utilisateur.
 
