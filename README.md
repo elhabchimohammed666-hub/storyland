@@ -1,3 +1,6 @@
+## License
+   © 2026 Elhabchi Mohammed. All Rights Reserved.
+
 # 📚 StoryLand — Plateforme MERN de Lecture & Création d'Histoires par IA
 
 > **AI-Powered Storytelling & Reading Platform**  
